@@ -16,11 +16,10 @@ function App() {
   }, [])
 
   const columns: TableColumn<ITransport>[] = [
-    { name: "Id", selector: row => row.id },
-    { name: "Номер машины", selector: row => row.transport_plates },
-    { name: "Страна", selector: row => row.Country },
-    { name: "Модель транспорта", selector: row => row.transport_model },
-    { name: "Производитель", selector: row => row.transport_brand },
+    { name: "Номер машины", selector: row => row.vehicle.vin },
+    { name: "Цвет", selector: row => row.vehicle.colorStr },
+    { name: "Модель транспорта", selector: row => row.vehicle.transpMadeDate },
+    { name: "Производитель", selector: row => row.vehicle.transpMadeDate },
   ];
 
   return (
@@ -34,7 +33,7 @@ function App() {
           />
           <DataTable
             columns={columns}
-            data={transport.filter(t => debouncedValue ? t.transport_plates.toLowerCase().indexOf(debouncedValue) > -1 : 1 == 1)} />
+            data={transport.filter(t => debouncedValue ? t.vehicle.vin.toLowerCase().indexOf(debouncedValue) > -1 : 1 == 1)} />
         </div>
       </div>
     </div>
